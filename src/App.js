@@ -45,6 +45,7 @@ function createList() {
       const listItem = document.createElement("li");
       listItem.setAttribute("data-index", index);
       console.log(person);
+      console.log(index);
 
       listItem.classList.add("right");
 
@@ -53,9 +54,9 @@ function createList() {
 
       listItem.innerHTML = `
       <div class="draggable" draggable="true"> <br /> <br />
-      <img src=${person.imgUrl} />
+      <span class="number"> ${index}</span>        <h4 class="person-name">  ${person.type} </h4>
 
-        <h4 class="person-name">  ${person.type} </h4>
+      <img src=${person.imgUrl} />
         <h2> ${test}${person.pose.slice(1,40)} </h2>
         <p> ${person.english} </p>
         <i class="fas fa-grip-lines"> </i>
