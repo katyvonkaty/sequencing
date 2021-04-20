@@ -1,34 +1,9 @@
 import "./App.css";
-import plank from "./assets/images/plank.png";
-import downward from "./assets/images/downward.png";
-import caturanga from "./assets/images/caturanga.png";
-import utanasana from "./assets/images/utanasana.png";
-import bhjungasana from "./assets/images/bhjungasana.png";
-import lowlunge from "./assets/images/lowlunge.png";
-import balasana from "./assets/images/balasana.png";
 
+import richestPeople from "./richest-people"
 const draggable_list = document.getElementById("draggable-list");
 // const check = document.getElementById("check");
 
-// const richestPeople = [
-//   "jeff bezois", "billgates", "bernard arnault", "larry page"
-// ]
-//
-
-const richestPeople = [
-  { pose: "plank",  imgUrl: `${plank}`, type:"puttering", english:"plank"},
-  { pose: "utanasana", imgUrl: `${utanasana}`, type:"puttering", english:"childs pose" },
-  { pose: "bhjuangasana", imgUrl: `${bhjungasana}`, type:"puttering", english:"cobra" },
-  { pose: "lowlunge", imgUrl: `${lowlunge}` , type:"puttering", english:"low lunge"},
-  { pose: "balasana",  imgUrl: `${balasana}`, type:"puttering", english:"childs pose"},
-  { pose: "caturanga", imgUrl: `${caturanga}`, type:"puttering", english:"" },
-  { pose: "plank",  imgUrl: `${plank}`, type:"puttering", english:"plank"},
-  { pose: "utanasana", imgUrl: `${utanasana}`, type:"opening standing", english:"chair" },
-  { pose: "downward dog", imgUrl: `${downward}`, type:"opening standing", english:"downward dog" },
-  { pose: "lowlunge", imgUrl: `${lowlunge}` , type:"opening standing", english:"low lunge"},
-  { pose: "balasana",  imgUrl: `${balasana}`, type:"puttering", english:"childs pose"},
-  { pose: "caturanga", imgUrl: `${caturanga}`, type:"puttering", english:"caturanga"}
-];
 
 //store list items
 const listItems = [];
@@ -37,10 +12,12 @@ let dragStartIndex;
 //insert list items into document
 
 function createList() {
+  // .map((a) => ({ value: a, sort: Math.random() }))
+  // .sort((a, b) => a.sort - b.sort)
+  // .map((a) => a.value)
+  // if i wanted to have it in different order everytime
+
   [...richestPeople]
-    .map((a) => ({ value: a, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map((a) => a.value)
     .forEach((person, index) => {
       const listItem = document.createElement("li");
       listItem.setAttribute("data-index", index);
@@ -59,6 +36,7 @@ function createList() {
       <img src=${person.imgUrl} />
         <h2> ${test}${person.pose.slice(1,40)} </h2>
         <p> ${person.english} </p>
+              <p> <b> Cues <br /> </b> ${person.cues} </p>
         <i class="fas fa-grip-lines"> </i>
       </div>
     `;
