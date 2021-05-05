@@ -1,6 +1,9 @@
 import "./App.css";
 import richestPeople from "./richest-people";
+import * as FilePond from 'filepond';
 
+
+// Add it to the DOM
 const cardsContainer = document.getElementById("cards-container");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
@@ -11,7 +14,7 @@ const hideBtn = document.getElementById("hide");
 const sanskirtEl = document.getElementById("sanskirt");
 const answerEl = document.getElementById("answer");
 const addCardBtn = document.getElementById("add-card");
-// const addImageBtn = document.getElementById("add-image")
+const imageEl = document.getElementById("myImg")
 const cuesEl = document.getElementById("cues");
 
 const clearBtn = document.getElementById("clear");
@@ -24,6 +27,8 @@ const draggable_list = document.getElementById("draggable-list");
 
 //store list items
 const listItems = [];
+
+
 let dragStartIndex;
 
 //insert list items into document
@@ -48,16 +53,21 @@ function createCards() {
 
 function createCard(data, index) {
   const card = document.createElement("li");
+  card.setAttribute("data-index", index);
+  console.log(index);
+
   card.classList.add("right");
 
   card.innerHTML = `
   <div class="draggable" draggable="true"> <br /> <br />
-  <span class="number"> ${data.index}</span>
+  <span class="number"> ${listItems.length}</span>
 
 
     <h2>${data.cues} </h2>
     <p> ${data.answer} </p>
     <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
+    <img src=${data.pond}>
+
     <i class="fas fa-grip-lines"> </i>
   </div>
   `;
@@ -69,10 +79,20 @@ function createCard(data, index) {
   console.log(listItems);
 }
 
+
+
+
+
 addCardBtn.addEventListener("click", () => {
   const sanskirt = sanskirtEl.value;
   const answer = answerEl.value;
   const cues = cuesEl.value;
+  const pond = FilePond.create({
+      multiple: true,
+      name: 'filepond'
+  });
+
+  document.body.appendChild(pond.element);
 
   if (sanskirt.trim() && answer.trim()) {
     const newCard = { sanskirt, answer, cues };
@@ -90,6 +110,7 @@ addCardBtn.addEventListener("click", () => {
     // setCardsData(cardsData);
   }
 });
+
 
 function createList() {
   [...richestPeople].forEach((person, index) => {
