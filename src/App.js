@@ -51,19 +51,21 @@ function createCard(data, index) {
   card.classList.add("right");
 
   card.innerHTML = `
-  <div class="draggable">
+  <div class="draggable" draggable="true"> <br /> <br />
+  <span class="number"> ${data.index}</span>
 
 
-
-      <p><b> French: </b> ${data.sanskirt}</p>
-      <p><b>Sentence: </b> ${data.cues}</p>
-
-
+    <h2>${data.cues} </h2>
+    <p> ${data.answer} </p>
+    <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
+    <i class="fas fa-grip-lines"> </i>
   </div>
   `;
 
   //add to dom cards
   listItems.push(card);
+  draggable_list.appendChild(card);
+
   console.log(listItems);
 }
 
@@ -83,6 +85,7 @@ addCardBtn.addEventListener("click", () => {
     addContainer.classList.remove("show");
 
     listItems.push(newCard);
+
     console.log(newCard);
     // setCardsData(cardsData);
   }
