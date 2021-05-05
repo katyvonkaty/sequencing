@@ -29,23 +29,55 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <h1> Sequence That Sh*t </h1>
-    <p> Drag and drop your cards to arrange a yoga sequence </p>
-    <div class="draggable-list" id="draggable-list">
+
+    <h1>Sequence That Sh*t</h1>
+    <p>Drag and drop your cards to arrange a yoga sequence</p>
+    <div class="draggable-list" id="draggable-list"></div>
+
+
+
+
+    <div id="cards-container" class="cards"></div>
+
+    <div class="navigation">
+      <button id="prev" class="nav-button">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+
+      <p id="current"></p>
+
+      <button id="next" class="nav-button">
+        <i class="fas fa-arrow-right"></i>
+      </button>
     </div>
-    <!-- <button class="check-btn" id="check">
-        check order
-        <i class="fas fa-paper-plane"> </i>
-    </button> -->
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <div id="add-container" class="add-container">
+      <h1>
+        Add new card
+        <button id="hide" class="btn btn-small btn-ghost">
+          <i class="fas fa-times"> </i>
+        </button>
+      </h1>
+      <div class="form-group">
+        <div class="form-group">
+          <label for="sanskirt"> sanskirt </label>
+          <textarea id="sanskirt"> enter sanskirt</textarea>
+        </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+        <div class="form-group">
+          <label for="answer"> answer </label>
+          <textarea id="answer"> enter answer</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cues"> cues </label>
+          <textarea id="cues"> enter cues</textarea>
+        </div>
+
+        <button id="add-card" class="btn">
+          <i class="fas fa-plus"> </i> add card
+        </button>
+      </div>
+    </div>
   </body>
 </html>

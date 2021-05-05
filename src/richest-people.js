@@ -2,7 +2,6 @@ import plank from "./assets/images/plank.png";
 import downward from "./assets/images/downward.png";
 import caturanga from "./assets/images/caturanga.png";
 import utanasana from "./assets/images/utanasana.png";
-import bhjungasana from "./assets/images/bhjungasana.png";
 import lowlunge from "./assets/images/lowlunge.png";
 import balasana from "./assets/images/balasana.png";
 import cobra from "./assets/images/cobra.png";
