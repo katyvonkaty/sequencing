@@ -66,7 +66,7 @@ function createCard(data, index) {
     <h2>${data.cues} </h2>
     <p> ${data.answer} </p>
     <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
-    <img src=${data.pond}>
+    <img src=${data.url}>
 
     <i class="fas fa-grip-lines"> </i>
   </div>
@@ -81,26 +81,29 @@ function createCard(data, index) {
 
 
 
-
-
 addCardBtn.addEventListener("click", () => {
   const sanskirt = sanskirtEl.value;
   const answer = answerEl.value;
   const cues = cuesEl.value;
-  const pond = FilePond.create({
-      multiple: true,
-      name: 'filepond'
-  });
-
-  document.body.appendChild(pond.element);
+  var Element = document.querySelector('input');
+     var img = document.querySelector('img');
 
   if (sanskirt.trim() && answer.trim()) {
-    const newCard = { sanskirt, answer, cues };
+
+         var url = URL.createObjectURL(Element.files[0]);
+         img.src = url;
+         console.log(url);
+         var d=document.querySelector(".p");
+         d.textContent+=url;
+
+
+    const newCard = { sanskirt, answer, cues, url };
     createCard(newCard);
 
     sanskirtEl.value = "";
     answerEl.value = "";
     cuesEl.value = "";
+    url.value="";
 
     addContainer.classList.remove("show");
 
