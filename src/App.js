@@ -54,7 +54,6 @@ function createCards() {
 function createCard(data, index) {
   const card = document.createElement("li");
   card.setAttribute("data-index", index);
-  console.log(index);
 
   card.classList.add("right");
 
@@ -66,7 +65,10 @@ function createCard(data, index) {
     <h2>${data.cues} </h2>
     <p> ${data.answer} </p>
     <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
-    <img src=${data.url}>
+    <img src=${data.img}>
+    ${data.img}
+    <img src=${data.test} />
+
 
     <i class="fas fa-grip-lines"> </i>
   </div>
@@ -85,25 +87,27 @@ addCardBtn.addEventListener("click", () => {
   const sanskirt = sanskirtEl.value;
   const answer = answerEl.value;
   const cues = cuesEl.value;
-  var Element = document.querySelector('input');
-     var img = document.querySelector('img');
 
-  if (sanskirt.trim() && answer.trim()) {
+  if (document.querySelector('input[type="file"]').files && document.querySelector('input[type="file"]').files[0]) {
+       var img = document.querySelector('img');
+       img.onload = () => {
+           URL.revokeObjectURL(img.src);  // no longer needed, free memory
+       }
 
-         var url = URL.createObjectURL(Element.files[0]);
-         img.src = url;
-         console.log(url);
-         var d=document.querySelector(".p");
-         d.textContent+=url;
+       img.src = URL.createObjectURL(document.querySelector('input[type="file"]').files[0]); // set src to blob url
+   }
+
+console.log(img);
 
 
-    const newCard = { sanskirt, answer, cues, url };
+    const newCard = { sanskirt, answer, cues, img };
     createCard(newCard);
 
     sanskirtEl.value = "";
     answerEl.value = "";
     cuesEl.value = "";
-    url.value="";
+
+
 
     addContainer.classList.remove("show");
 
@@ -111,7 +115,6 @@ addCardBtn.addEventListener("click", () => {
 
     console.log(newCard);
     // setCardsData(cardsData);
-  }
 });
 
 
