@@ -11,6 +11,7 @@ const sanskirtEl = document.getElementById("sanskirt");
 const answerEl = document.getElementById("answer");
 const addCardBtn = document.getElementById("add-card");
 const cuesEl = document.getElementById("cues");
+const imageEl = document.getElementById("myImg")
 
 const addContainer = document.getElementById("add-container");
 const draggable_list = document.getElementById("draggable-list");
@@ -44,8 +45,11 @@ function createCards() {
 function createCard(data, index) {
   const card = document.createElement("li");
   card.setAttribute("data-index", index);
+  console.log(data);
 
-  card.classList.add("col-sm-3");
+  draggable_list.appendChild(data.img);
+
+  card.classList.add("col-sm-2");
   console.log(data.img);
 
   card.innerHTML = `
@@ -56,10 +60,9 @@ function createCard(data, index) {
     <h2>${data.cues} </h2>
     <p> ${data.answer} </p>
     <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
-    <img src=${data.img}>
-    <img src= data.img>
+    <img src=${data.img} />
     <${data.img}>
-    ${data.img}
+    <p> ${data.img} </p>
 
 
     <i class="fas fa-grip-lines"> </i>
@@ -77,8 +80,9 @@ addCardBtn.addEventListener("click", () => {
   const sanskirt = sanskirtEl.value;
   const answer = answerEl.value;
   const cues = cuesEl.value;
+  let img = imageEl.value
 
-  let img = document.querySelector("img");
+  img = document.querySelector("img");
   img.onload = () => {
     URL.revokeObjectURL(img.src); // no longer needed, free memory
   };
@@ -88,9 +92,6 @@ addCardBtn.addEventListener("click", () => {
   ); // set src to blob url
 
   console.log(img);
-  draggable_list.appendChild(img);
-
-
 
 
   const newCard = { sanskirt, answer, cues, img };
@@ -100,7 +101,7 @@ addCardBtn.addEventListener("click", () => {
   sanskirtEl.value = "";
   answerEl.value = "";
   cuesEl.value = "";
-  img.value=""
+
 
   addContainer.classList.remove("show");
 
