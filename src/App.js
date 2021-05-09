@@ -1,25 +1,16 @@
 import "./App.css";
 import richestPeople from "./richest-people";
-import * as FilePond from 'filepond';
-
 
 // Add it to the DOM
-const cardsContainer = document.getElementById("cards-container");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-const currentEl = document.getElementById("current");
-const showBtn = document.getElementById("show");
-const hideBtn = document.getElementById("hide");
+// const nextBtn = document.getElementById("next");
+// const currentEl = document.getElementById("current");
+// const showBtn = document.getElementById("show");
+// const hideBtn = document.getElementById("hide");
 // const questionEl = document.getElementById("question");
 const sanskirtEl = document.getElementById("sanskirt");
 const answerEl = document.getElementById("answer");
 const addCardBtn = document.getElementById("add-card");
-const imageEl = document.getElementById("myImg")
 const cuesEl = document.getElementById("cues");
-
-const clearBtn = document.getElementById("clear");
-const loadFile = document.getElementById("loadFile");
-const addImgBtn = document.getElementById("addImgBtn");
 
 const addContainer = document.getElementById("add-container");
 const draggable_list = document.getElementById("draggable-list");
@@ -28,12 +19,11 @@ const draggable_list = document.getElementById("draggable-list");
 //store list items
 const listItems = [];
 
-
 let dragStartIndex;
 
 //insert list items into document
 
-let currentActiveCard = 0;
+// let currentActiveCard = 0;
 
 // const cardsEl = [];
 //REPLACE WITH WIthlist items
@@ -55,7 +45,8 @@ function createCard(data, index) {
   const card = document.createElement("li");
   card.setAttribute("data-index", index);
 
-  card.classList.add("right");
+  card.classList.add("col-sm-3");
+  console.log(data.img);
 
   card.innerHTML = `
   <div class="draggable" draggable="true"> <br /> <br />
@@ -66,8 +57,9 @@ function createCard(data, index) {
     <p> ${data.answer} </p>
     <p> <b> Cues <br /> </b> ${data.sanskirt} </p>
     <img src=${data.img}>
+    <img src= data.img>
+    <${data.img}>
     ${data.img}
-    <img src=${data.test} />
 
 
     <i class="fas fa-grip-lines"> </i>
@@ -81,42 +73,42 @@ function createCard(data, index) {
   console.log(listItems);
 }
 
-
-
 addCardBtn.addEventListener("click", () => {
   const sanskirt = sanskirtEl.value;
   const answer = answerEl.value;
   const cues = cuesEl.value;
 
-  if (document.querySelector('input[type="file"]').files && document.querySelector('input[type="file"]').files[0]) {
-       var img = document.querySelector('img');
-       img.onload = () => {
-           URL.revokeObjectURL(img.src);  // no longer needed, free memory
-       }
+  let img = document.querySelector("img");
+  img.onload = () => {
+    URL.revokeObjectURL(img.src); // no longer needed, free memory
+  };
 
-       img.src = URL.createObjectURL(document.querySelector('input[type="file"]').files[0]); // set src to blob url
-   }
+  img.src = URL.createObjectURL(
+    document.querySelector('input[type="file"]').files[0]
+  ); // set src to blob url
 
-console.log(img);
-
-
-    const newCard = { sanskirt, answer, cues, img };
-    createCard(newCard);
-
-    sanskirtEl.value = "";
-    answerEl.value = "";
-    cuesEl.value = "";
+  console.log(img);
+  draggable_list.appendChild(img);
 
 
 
-    addContainer.classList.remove("show");
 
-    listItems.push(newCard);
+  const newCard = { sanskirt, answer, cues, img };
+  createCard(newCard);
 
-    console.log(newCard);
-    // setCardsData(cardsData);
+
+  sanskirtEl.value = "";
+  answerEl.value = "";
+  cuesEl.value = "";
+  img.value=""
+
+  addContainer.classList.remove("show");
+
+  listItems.push(newCard);
+
+  console.log(newCard);
+  // setCardsData(cardsData);
 });
-
 
 function createList() {
   [...richestPeople].forEach((person, index) => {
@@ -125,16 +117,15 @@ function createList() {
     console.log(person);
     console.log(index);
 
-    listItem.classList.add("right");
+    listItem.classList.add("col-sm-3");
 
     let test = person.pose[0].toUpperCase();
     console.log(test);
 
     listItem.innerHTML = `
       <div class="draggable" draggable="true"> <br /> <br />
-      <span class="number"> ${index}</span>        <h4 class="person-name">  ${
-      person.type
-    } </h4>
+      <span class="number"> ${index}</span>
+      <h4 class="person-name">  ${person.type} </h4>
 
       <img src=${person.imgUrl} />
         <h2> ${test}${person.pose.slice(1, 40)} </h2>
@@ -142,6 +133,7 @@ function createList() {
         <p> <b> Cues <br /> </b> ${person.cues} </p>
         <i class="fas fa-grip-lines"> </i>
       </div>
+
     `;
 
     listItems.push(listItem);
